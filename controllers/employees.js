@@ -18,22 +18,22 @@ const getSingle = async (req, res) => {
   });
 };
 
-const createEmployee = async (req, res) => {
-  const employee = {
+const createEmployees = async (req, res) => {
+  const employees = {
     firstName: req.body.firstName,
     lastName: req.body.lastName,
     email: req.body.email,
     birthday: req.body.birthday
   };
-  const response = await mongodb.getDb().db().collection('employees').insertOne(employee);
+  const response = await mongodb.getDb().db().collection('employees').insertOne(employees);
   if (response.acknowledged) {
     res.status(201).json(response);
   } else {
-    res.status(500).json(response.error || 'Some error occurred while creating the employee.');
+    res.status(500).json(response.error || 'Some error occurred while creating the employees.');
   }
 };
 
-const updateEmployee = async (req, res) => {
+const updateEmployees = async (req, res) => {
   const userId = new ObjectId(req.params.id);
   // be aware of updateOne if you only want to update specific fields
   const contact = {
@@ -51,11 +51,11 @@ const updateEmployee = async (req, res) => {
   if (response.modifiedCount > 0) {
     res.status(204).send();
   } else {
-    res.status(500).json(response.error || 'Some error occurred while updating the employee.');
+    res.status(500).json(response.error || 'Some error occurred while updating the employees.');
   }
 };
 
-const deleteEmployee = async (req, res) => {
+const deleteEmployees = async (req, res) => {
   const userId = new ObjectId(req.params.id);
   const response = await mongodb.getDb().db().collection('employees').remove({ _id: userId }, true);
   console.log(response);
@@ -69,7 +69,7 @@ const deleteEmployee = async (req, res) => {
 module.exports = {
   getAll,
   getSingle,
-  createEmployee,
-  updateEmployee,
-  deleteEmployee
+  createEmployees,
+  updateEmployees,
+  deleteEmployees
 };
