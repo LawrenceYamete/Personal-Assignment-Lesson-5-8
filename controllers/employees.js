@@ -18,30 +18,28 @@ const getSingle = async (req, res) => {
   });
 };
 
-const createContact = async (req, res) => {
-  const contact = {
+const createEmployee = async (req, res) => {
+  const employee = {
     firstName: req.body.firstName,
     lastName: req.body.lastName,
     email: req.body.email,
-    favoriteColor: req.body.favoriteColor,
     birthday: req.body.birthday
   };
-  const response = await mongodb.getDb().db().collection('employees').insertOne(contact);
+  const response = await mongodb.getDb().db().collection('employees').insertOne(employee);
   if (response.acknowledged) {
     res.status(201).json(response);
   } else {
-    res.status(500).json(response.error || 'Some error occurred while creating the contact.');
+    res.status(500).json(response.error || 'Some error occurred while creating the employee.');
   }
 };
 
-const updateContact = async (req, res) => {
+const updateEmployee = async (req, res) => {
   const userId = new ObjectId(req.params.id);
   // be aware of updateOne if you only want to update specific fields
   const contact = {
     firstName: req.body.firstName,
     lastName: req.body.lastName,
     email: req.body.email,
-    favoriteColor: req.body.favoriteColor,
     birthday: req.body.birthday
   };
   const response = await mongodb
@@ -53,11 +51,11 @@ const updateContact = async (req, res) => {
   if (response.modifiedCount > 0) {
     res.status(204).send();
   } else {
-    res.status(500).json(response.error || 'Some error occurred while updating the contact.');
+    res.status(500).json(response.error || 'Some error occurred while updating the employee.');
   }
 };
 
-const deleteContact = async (req, res) => {
+const deleteEmployee = async (req, res) => {
   const userId = new ObjectId(req.params.id);
   const response = await mongodb.getDb().db().collection('employees').remove({ _id: userId }, true);
   console.log(response);
@@ -71,7 +69,7 @@ const deleteContact = async (req, res) => {
 module.exports = {
   getAll,
   getSingle,
-  createContact,
-  updateContact,
-  deleteContact
+  createEmployee,
+  updateEmployee,
+  deleteEmployee
 };

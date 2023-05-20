@@ -17,13 +17,14 @@
     "dotenv": "^16.0.0",
     "express": "^4.16.3",
     "mongodb": "^4.4.0",
+    "swagger": "^0.0.1",
     "swagger-ui-express": "^4.3.0"
   },
   "devDependencies": {
     "eslint": "^8.10.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.0.0",
-    "nodemon": "^1.18.4",
+    "nodemon": "^2.0.22",
     "prettier": "2.8.8",
     "swagger-autogen": "^2.19.0"
   }
