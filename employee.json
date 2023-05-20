@@ -1,0 +1,80 @@
+{
+  "employee1": [
+    {
+      "firstName": "John",
+      "lastName": "Doe",
+      "email": "johndoe@example.com",
+      "phoneNumber": "1234567890",
+      "birthday": "1990-05-15",
+      "address": "123 Main St, City, State",
+      "interest": "Reading, hiking",
+      "occupation": {
+        "jobTitle": "Software Engineer",
+        "responsibilities": "Develop and maintain software applications",
+        "education": "Bachelor's degree in Computer Science",
+        "expertise": "Java, Python, SQL",
+        "skills": "Problem-solving, teamwork",
+        "salary": 80000
+      },
+      "emergencyContact": {
+        "firstName": "Jane",
+        "lastName": "Doe",
+        "phoneNumber": "9876543210",
+        "email": "janedoe@example.com",
+        "address": "456 Park Ave, City, State"
+      }
+    }
+  ],
+  "employee2": [
+    {
+      "firstName": "Mary",
+      "lastName": "Smith",
+      "email": "marysmith@example.com",
+      "phoneNumber": "5551234567",
+      "birthday": "1985-08-10",
+      "address": "789 Elm St, City, State",
+      "interest": "Painting, yoga",
+      "occupation": {
+        "jobTitle": "Graphic Designer",
+        "responsibilities": "Create visual designs for marketing materials",
+        "education": "Bachelor's degree in Graphic Design",
+        "expertise": "Adobe Photoshop, Illustrator",
+        "skills": "Creativity, attention to detail",
+        "salary": 60000
+      },
+      "emergencyContact": {
+        "firstName": "David",
+        "lastName": "Johnson",
+        "phoneNumber": "5559876543",
+        "email": "davidjohnson@example.com",
+        "address": "321 Oak St, City, State"
+      }
+    }
+  ],
+  "employee3": [
+    {
+      "firstName": "Lisa",
+      "lastName": "Brown",
+      "email": "lisabrown@example.com",
+      "phoneNumber": "7775551234",
+      "birthday": "1995-03-25",
+      "address": "987 Maple St, City, State",
+      "interest": "Cooking, photography",
+      "occupation": {
+        "jobTitle": "Marketing Specialist",
+        "responsibilities": "Plan and execute marketing campaigns",
+        "education": "Bachelor's degree in Marketing",
+        "expertise": "Digital marketing, social media",
+        "skills": "Analytical thinking, communication",
+        "salary": 55000
+      },
+      "emergencyContact": {
+        "firstName": "Michael",
+        "lastName": "Wilson",
+        "phoneNumber": "7774445555",
+        "email": "michaelwilson@example.com",
+        "address": "654 Pine St, City, State"
+      }
+    }
+  ]
+}
