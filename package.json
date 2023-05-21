@@ -23,7 +23,7 @@
     "eslint": "^8.10.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.0.0",
-    "nodemon": "^1.18.4",
+    "nodemon": "^2.0.22",
     "prettier": "2.8.8",
     "swagger-autogen": "^2.19.0"
   }

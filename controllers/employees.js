@@ -5,7 +5,7 @@ const getAll = async (req, res) => {
   const result = await mongodb.getDb().db().collection('employees').find();
   result.toArray().then((lists) => {
     res.setHeader('Content-Type', 'application/json');
-    res.status(200).json(lists);
+    res.status(200).json(lists);                                                  
   });
 };
 
