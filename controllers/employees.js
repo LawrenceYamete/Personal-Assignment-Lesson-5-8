@@ -1,21 +1,38 @@
 const mongodb = require('../db/connect');
 const ObjectId = require('mongodb').ObjectId;
 
-const getAll = async (req, res) => {
-  const result = await mongodb.getDb().db().collection('employees').find();
-  result.toArray().then((lists) => {
-    res.setHeader('Content-Type', 'application/json');
-    res.status(200).json(lists);                                                  
-  });
+const getAll = (req, res) => {
+  mongodb
+    .getDb()
+    .db()
+    .collection('employees')
+    .find()
+    .toArray((err, lists) => {
+      if (err) {
+        res.status(400).json({ message: err });
+      }
+      res.setHeader('Content-Type', 'application/json');
+      res.status(200).json(lists);
+    });
 };
 
-const getSingle = async (req, res) => {
+const getSingle = (req, res) => {
+  if (!ObjectId.isValid(req.params.id)) {
+    res.status(400).json('Must use a valid employees id to find a employees.');
+  }
   const userId = new ObjectId(req.params.id);
-  const result = await mongodb.getDb().db().collection('employees').find({ _id: userId });
-  result.toArray().then((lists) => {
-    res.setHeader('Content-Type', 'application/json');
-    res.status(200).json(lists[0]);
-  });
+  mongodb
+    .getDb()
+    .db()
+    .collection('employees')
+    .find({ _id: userId })
+    .toArray((err, result) => {
+      if (err) {
+        res.status(400).json({ message: err });
+      }
+      res.setHeader('Content-Type', 'application/json');
+      res.status(200).json(result[0]);
+    });
 };
 
 const createEmployees = async (req, res) => {
@@ -36,7 +53,7 @@ const createEmployees = async (req, res) => {
 const updateEmployees = async (req, res) => {
   const userId = new ObjectId(req.params.id);
   // be aware of updateOne if you only want to update specific fields
-  const contact = {
+  const employees = {
     firstName: req.body.firstName,
     lastName: req.body.lastName,
     email: req.body.email,
@@ -46,7 +63,7 @@ const updateEmployees = async (req, res) => {
     .getDb()
     .db()
     .collection('employees')
-    .replaceOne({ _id: userId }, contact);
+    .replaceOne({ _id: userId }, employees);
   console.log(response);
   if (response.modifiedCount > 0) {
     res.status(204).send();
@@ -62,7 +79,7 @@ const deleteEmployees = async (req, res) => {
   if (response.deletedCount > 0) {
     res.status(204).send();
   } else {
-    res.status(500).json(response.error || 'Some error occurred while deleting the contact.');
+    res.status(500).json(response.error || 'Some error occurred while deleting the employee.');
   }
 };
 
