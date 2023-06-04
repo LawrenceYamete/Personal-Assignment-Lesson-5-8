@@ -17,9 +17,8 @@
     "dotenv": "^16.0.0",
     "express": "^4.16.3",
     "mongodb": "^4.4.0",
-    "swagger": "^0.0.1",
-    "swagger-ui-express": "^4.6.3",
-    "yarn": "^1.22.19"
+    "swagger": "^0.7.5",
+    "swagger-ui-express": "^4.3.0"
   },
   "devDependencies": {
     "eslint": "^8.10.0",
