@@ -5,7 +5,7 @@ const getAll = (req, res) => {
   mongodb
     .getDb()
     .db()
-    .collection('employees')
+    .collection('employee')
     .find()
     .toArray((err, lists) => {
       if (err) {
@@ -24,7 +24,7 @@ const getSingle = (req, res) => {
   mongodb
     .getDb()
     .db()
-    .collection('employees')
+    .collection('employee')
     .find({ _id: userId })
     .toArray((err, result) => {
       if (err) {
@@ -42,7 +42,7 @@ const createEmployees = async (req, res) => {
     email: req.body.email,
     birthday: req.body.birthday
   };
-  const response = await mongodb.getDb().db().collection('employees').insertOne(employees);
+  const response = await mongodb.getDb().db().collection('employee').insertOne(employees);
   if (response.acknowledged) {
     res.status(201).json(response);
   } else {
@@ -62,7 +62,7 @@ const updateEmployees = async (req, res) => {
   const response = await mongodb
     .getDb()
     .db()
-    .collection('employees')
+    .collection('employee')
     .replaceOne({ _id: userId }, employees);
   console.log(response);
   if (response.modifiedCount > 0) {
@@ -74,7 +74,7 @@ const updateEmployees = async (req, res) => {
 
 const deleteEmployees = async (req, res) => {
   const userId = new ObjectId(req.params.id);
-  const response = await mongodb.getDb().db().collection('employees').remove({ _id: userId }, true);
+  const response = await mongodb.getDb().db().collection('employee').remove({ _id: userId }, true);
   console.log(response);
   if (response.deletedCount > 0) {
     res.status(204).send();
