@@ -36,13 +36,13 @@ const getSingle = (req, res) => {
 };
 
 const createEmployees = async (req, res) => {
-  const employees = {
+  const employee = {
     firstName: req.body.firstName,
     lastName: req.body.lastName,
     email: req.body.email,
     birthday: req.body.birthday
   };
-  const response = await mongodb.getDb().db().collection('employee').insertOne(employees);
+  const response = await mongodb.getDb().db().collection('employee').insertOne(employee);
   if (response.acknowledged) {
     res.status(201).json(response);
   } else {
@@ -53,7 +53,7 @@ const createEmployees = async (req, res) => {
 const updateEmployees = async (req, res) => {
   const userId = new ObjectId(req.params.id);
   // be aware of updateOne if you only want to update specific fields
-  const employees = {
+  const employee = {
     firstName: req.body.firstName,
     lastName: req.body.lastName,
     email: req.body.email,
@@ -63,7 +63,7 @@ const updateEmployees = async (req, res) => {
     .getDb()
     .db()
     .collection('employee')
-    .replaceOne({ _id: userId }, employees);
+    .replaceOne({ _id: userId }, employee);
   console.log(response);
   if (response.modifiedCount > 0) {
     res.status(204).send();
