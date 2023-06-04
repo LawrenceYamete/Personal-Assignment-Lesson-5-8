@@ -36,18 +36,18 @@ const getSingle = (req, res) => {
 };
 
 const createEmployees = async (req, res) => {
-    const contact = {
+    const employees = {
         firstName: req.body.firstName,
         lastName: req.body.lastName,
         email: req.body.email,
         favoriteColor: req.body.favoriteColor,
         birthday: req.body.birthday
     };
-    const response = await mongodb.getDb().db().collection('contacts').insertOne(contact);
+    const response = await mongodb.getDb().db().collection('employees').insertOne(employees);
     if (response.acknowledged) {
         res.status(201).json(response);
     } else {
-        res.status(500).json(response.error || 'Some error occurred while creating the contact.');
+        res.status(500).json(response.error || 'Some error occurred while creating the employees.');
     }
 };
 
