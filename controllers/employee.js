@@ -5,7 +5,7 @@ const getAll = (req, res) => {
   mongodb
     .getDb()
     .db()
-    .collection('employee')
+    .collection('employees')
     .find()
     .toArray((err, lists) => {
       if (err) {
@@ -24,7 +24,7 @@ const getSingle = (req, res) => {
   mongodb
     .getDb()
     .db()
-    .collection('employee')
+    .collection('employees')
     .find({ _id: userId })
     .toArray((err, result) => {
       if (err) {
@@ -36,13 +36,13 @@ const getSingle = (req, res) => {
 };
 
 const createEmployees = async (req, res) => {
-  const employee = {
+  const employees = {
     firstName: req.body.firstName,
     lastName: req.body.lastName,
     email: req.body.email,
     birthday: req.body.birthday
   };
-  const response = await mongodb.getDb().db().collection('employee').insertOne(employee);
+  const response = await mongodb.getDb().db().collection('employees').insertOne(employees);
   if (response.acknowledged) {
     res.status(201).json(response);
   } else {
@@ -53,7 +53,7 @@ const createEmployees = async (req, res) => {
 const updateEmployees = async (req, res) => {
   const userId = new ObjectId(req.params.id);
   // be aware of updateOne if you only want to update specific fields
-  const employee = {
+  const employees = {
     firstName: req.body.firstName,
     lastName: req.body.lastName,
     email: req.body.email,
@@ -62,8 +62,8 @@ const updateEmployees = async (req, res) => {
   const response = await mongodb
     .getDb()
     .db()
-    .collection('employee')
-    .replaceOne({ _id: userId }, employee);
+    .collection('employees')
+    .replaceOne({ _id: userId }, employees);
   console.log(response);
   if (response.modifiedCount > 0) {
     res.status(204).send();
@@ -74,7 +74,7 @@ const updateEmployees = async (req, res) => {
 
 const deleteEmployees = async (req, res) => {
   const userId = new ObjectId(req.params.id);
-  const response = await mongodb.getDb().db().collection('employee').remove({ _id: userId }, true);
+  const response = await mongodb.getDb().db().collection('employees').remove({ _id: userId }, true);
   console.log(response);
   if (response.deletedCount > 0) {
     res.status(204).send();
