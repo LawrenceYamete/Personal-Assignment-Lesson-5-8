@@ -2,7 +2,7 @@
   "swagger": "2.0",
   "info": {
     "title": "My API",
-    "description": "Temple API",
+    "description": "Employee API",
     "version": "1.0.0"
   },
   "host": "cse-341-project-lesson-5.onrender.com",
