@@ -5,7 +5,7 @@ const getAll = (req, res) => {
     mongodb
         .getDb()
         .db()
-        .collection('employees')
+        .collection('employee')
         .find()
         .toArray((err, lists) => {
             if (err) {
@@ -18,13 +18,13 @@ const getAll = (req, res) => {
 
 const getSingle = (req, res) => {
     if (!ObjectId.isValid(req.params.id)) {
-        res.status(400).json('Must use a valid employees id to find a employees.');
+        res.status(400).json('Must use a valid employee id to find a employee.');
     }
     const userId = new ObjectId(req.params.id);
     mongodb
         .getDb()
         .db()
-        .collection('employees')
+        .collection('employee')
         .find({ _id: userId })
         .toArray((err, result) => {
             if (err) {
@@ -36,46 +36,55 @@ const getSingle = (req, res) => {
 };
 
 const createEmployees = async (req, res) => {
-    const employees = {
+    const employee = {
         firstName: req.body.firstName,
         lastName: req.body.lastName,
         email: req.body.email,
-        favoriteColor: req.body.favoriteColor,
-        birthday: req.body.birthday
+        phoneNumber: req.body.phoneNumber,
+        birthday: req.body.birthday,
+        address: req.body.address,
+        interest: req.body.interest,
+        occupation: req.body.occupation,
+        emergencyContact: req.body.emergencyContact
     };
-    const response = await mongodb.getDb().db().collection('employees').insertOne(employees);
+    const response = await mongodb.getDb().db().collection('employee').insertOne(employee);
     if (response.acknowledged) {
         res.status(201).json(response);
     } else {
-        res.status(500).json(response.error || 'Some error occurred while creating the employees.');
+        res.status(500).json(response.error || 'Some error occurred while creating the employee.');
     }
 };
 
 const updateEmployees = async (req, res) => {
     const userId = new ObjectId(req.params.id);
     // be aware of updateOne if you only want to update specific fields
-    const employees = {
-        firstName: req.body.firstName,
-        lastName: req.body.lastName,
-        email: req.body.email,
-        birthday: req.body.birthday
+    const employee = {
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
+      email: req.body.email,
+      phoneNumber: req.body.phoneNumber,
+      birthday: req.body.birthday,
+      address: req.body.address,
+      interest: req.body.interest,
+      occupation: req.body.occupation,
+      emergencyContact: req.body.emergencyContact
     };
     const response = await mongodb
         .getDb()
         .db()
-        .collection('employees')
-        .replaceOne({ _id: userId }, employees);
+        .collection('employee')
+        .replaceOne({ _id: userId }, employee);
     console.log(response);
     if (response.modifiedCount > 0) {
         res.status(204).send();
     } else {
-        res.status(500).json(response.error || 'Some error occurred while updating the employees.');
+        res.status(500).json(response.error || 'Some error occurred while updating the employee.');
     }
 };
 
 const deleteEmployees = async (req, res) => {
     const userId = new ObjectId(req.params.id);
-    const response = await mongodb.getDb().db().collection('employees').remove({ _id: userId }, true);
+    const response = await mongodb.getDb().db().collection('employee').remove({ _id: userId }, true);
     console.log(response);
     if (response.deletedCount > 0) {
         res.status(204).send();
