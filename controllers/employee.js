@@ -45,7 +45,6 @@ const createEmployees = async (req, res) => {
         address: req.body.address,
         interest: req.body.interest,
         occupation: req.body.occupation,
-        body.occupation,
         emergencyContact: req.body.emergencyContact
     };
     const response = await mongodb.getDb().db().collection('employee').insertOne(employee);
