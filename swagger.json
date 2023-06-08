@@ -52,10 +52,22 @@
                 "email": {
                   "example": "any"
                 },
-                "favoriteColor": {
+                "phoneNumber": {
                   "example": "any"
                 },
                 "birthday": {
+                  "example": "any"
+                },
+                "address": {
+                  "example": "any"
+                },
+                "interest": {
+                  "example": "any"
+                },
+                "occupation": {
+                  "example": "any"
+                },
+                "emergencyContact": {
                   "example": "any"
                 }
               }
@@ -119,10 +131,22 @@
                 "email": {
                   "example": "any"
                 },
-                "favoriteColor": {
+                "phoneNumber": {
                   "example": "any"
                 },
                 "birthday": {
+                  "example": "any"
+                },
+                "address": {
+                  "example": "any"
+                },
+                "interest": {
+                  "example": "any"
+                },
+                "occupation": {
+                  "example": "any"
+                },
+                "emergencyContact": {
                   "example": "any"
                 }
               }
@@ -146,6 +170,42 @@
             "in": "path",
             "required": true,
             "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "firstName": {
+                  "example": "any"
+                },
+                "lastName": {
+                  "example": "any"
+                },
+                "email": {
+                  "example": "any"
+                },
+                "phoneNumber": {
+                  "example": "any"
+                },
+                "birthday": {
+                  "example": "any"
+                },
+                "address": {
+                  "example": "any"
+                },
+                "interest": {
+                  "example": "any"
+                },
+                "occupation": {
+                  "example": "any"
+                },
+                "emergencyContact": {
+                  "example": "any"
+                }
+              }
+            }
           }
         ],
         "responses": {
