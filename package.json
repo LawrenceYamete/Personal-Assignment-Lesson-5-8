@@ -20,7 +20,7 @@
     "npm": "^9.7.1",
     "package": "^1.0.1",
     "swagger": "^0.0.1",
-    "swagger-ui-express": "^4.3.0",
+    "swagger-ui-express": "^4.6.3",
     "yarn": "^1.22.19"
   },
   "devDependencies": {
