@@ -55,8 +55,21 @@ const createEmployees = async (req, res) => {
         birthday: req.body.birthday,
         address: req.body.address,
         interest: req.body.interest,
-        occupation: req.body.occupation,
-        emergencyContact: req.body.emergencyContact
+        occupation: {
+            jobTitle: req.body.jobTitle,
+            responsibilities: req.body.responsibilities,
+            education: req.body.education,
+            expertise: req.body.expertise,
+            skills: req.body.skills,
+            salary: req.body.salary
+        }, 
+        emergencyContact: {
+            firstName: req.body.firstName,
+            lastName: req.body.lastName,
+            phoneNumber: req.body.phoneNumber,
+            email: req.body.email,
+            address: req.body.address
+        }
     };
 
     const response = await mongodb.getDb().db().collection('employee').insertOne(employee);
@@ -65,8 +78,6 @@ const createEmployees = async (req, res) => {
     } else {
         res.status(500).json(response.error || 'Some error occurred while creating the employee.');
     }
-
-
 };
 
 const updateEmployees = async (req, res) => {
@@ -98,8 +109,13 @@ const updateEmployees = async (req, res) => {
 
 const deleteEmployees = async (req, res) => {
     const userId = new ObjectId(req.params.id);
-    const response = await mongodb.getDb().db().collection('employee').remove({ _id: userId }, true);
+    const response = await mongodb
+    .getDb()
+    .db()
+    .collection('employee')
+    .remove({ _id: userId }, true);
     console.log(response);
+    
     if (response.deletedCount > 0) {
         res.status(204).send();
     } else {
