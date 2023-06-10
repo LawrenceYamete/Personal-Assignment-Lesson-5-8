@@ -1,5 +1,6 @@
 const mongodb = require('../db/connect');
 const ObjectId = require('mongodb').ObjectId;
+const passwordUtil = require('../util/passwordComplexityCheck');
 
 const getAll = (req, res) => {
     mongodb
@@ -36,6 +37,16 @@ const getSingle = (req, res) => {
 };
 
 const createEmployees = async (req, res) => {
+    if (!req.body.username || !req.body.password) {
+        res.status(400).send({ message: 'Content can not be empty!' });
+        return;
+      }
+      const password = req.body.password;
+      const passwordCheck = passwordUtil.passwordPass(password);
+      if (passwordCheck.error) {
+        res.status(400).send({ message: passwordCheck.error });
+        return;
+      }
     const employee = {
         firstName: req.body.firstName,
         lastName: req.body.lastName,
@@ -47,12 +58,15 @@ const createEmployees = async (req, res) => {
         occupation: req.body.occupation,
         emergencyContact: req.body.emergencyContact
     };
+
     const response = await mongodb.getDb().db().collection('employee').insertOne(employee);
     if (response.acknowledged) {
         res.status(201).json(response);
     } else {
         res.status(500).json(response.error || 'Some error occurred while creating the employee.');
     }
+
+
 };
 
 const updateEmployees = async (req, res) => {
