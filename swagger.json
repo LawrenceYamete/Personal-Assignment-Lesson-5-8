@@ -43,6 +43,12 @@
             "schema": {
               "type": "object",
               "properties": {
+                "username": {
+                  "example": "any"
+                },
+                "password": {
+                  "example": "any"
+                },
                 "firstName": {
                   "example": "any"
                 },
@@ -64,10 +70,22 @@
                 "interest": {
                   "example": "any"
                 },
-                "occupation": {
+                "jobTitle": {
                   "example": "any"
                 },
-                "emergencyContact": {
+                "responsibilities": {
+                  "example": "any"
+                },
+                "education": {
+                  "example": "any"
+                },
+                "expertise": {
+                  "example": "any"
+                },
+                "skills": {
+                  "example": "any"
+                },
+                "salary": {
                   "example": "any"
                 }
               }
@@ -77,6 +95,9 @@
         "responses": {
           "201": {
             "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
           },
           "500": {
             "description": "Internal Server Error"
@@ -170,42 +191,6 @@
             "in": "path",
             "required": true,
             "type": "string"
-          },
-          {
-            "name": "body",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "firstName": {
-                  "example": "any"
-                },
-                "lastName": {
-                  "example": "any"
-                },
-                "email": {
-                  "example": "any"
-                },
-                "phoneNumber": {
-                  "example": "any"
-                },
-                "birthday": {
-                  "example": "any"
-                },
-                "address": {
-                  "example": "any"
-                },
-                "interest": {
-                  "example": "any"
-                },
-                "occupation": {
-                  "example": "any"
-                },
-                "emergencyContact": {
-                  "example": "any"
-                }
-              }
-            }
           }
         ],
         "responses": {
