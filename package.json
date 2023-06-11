@@ -22,7 +22,7 @@
     "mongoose": "^7.2.3",
     "npm": "^9.7.1",
     "package": "^1.0.1",
-    "swagger": "latest",
+    "swagger": "^0.0.1",
     "swagger-ui-express": "^4.6.3",
     "urix": "^0.1.0"
   },
