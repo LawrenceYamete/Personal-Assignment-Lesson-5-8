@@ -27,6 +27,8 @@ const getDb = () => {
 };
 
 module.exports = {
+  url: process.env.MONGODB_URI,
   initDb,
   getDb,
+  
 };

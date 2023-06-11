@@ -1,6 +1,8 @@
 const mongodb = require('../db/connect');
 const ObjectId = require('mongodb').ObjectId;
-const passwordUtil = require('../util/passwordComplexityCheck');
+const db = require('../models');
+const User = db.user;
+// const passwordUtil = require('../util/passwordComplexityCheck');
 
 const getAll = (req, res) => {
     mongodb
@@ -41,43 +43,51 @@ const createEmployees = async (req, res) => {
         res.status(400).send({ message: 'Content can not be empty!' });
         return;
       }
-      const password = req.body.password;
-      const passwordCheck = passwordUtil.passwordPass(password);
-      if (passwordCheck.error) {
-        res.status(400).send({ message: passwordCheck.error });
-        return;
-      }
-    const employee = {
-        firstName: req.body.firstName,
-        lastName: req.body.lastName,
-        email: req.body.email,
-        phoneNumber: req.body.phoneNumber,
-        birthday: req.body.birthday,
-        address: req.body.address,
-        interest: req.body.interest,
-        occupation: {
-            jobTitle: req.body.jobTitle,
-            responsibilities: req.body.responsibilities,
-            education: req.body.education,
-            expertise: req.body.expertise,
-            skills: req.body.skills,
-            salary: req.body.salary
-        }, 
-        emergencyContact: {
-            firstName: req.body.firstName,
-            lastName: req.body.lastName,
-            phoneNumber: req.body.phoneNumber,
-            email: req.body.email,
-            address: req.body.address
-        }
-    };
 
-    const response = await mongodb.getDb().db().collection('employee').insertOne(employee);
-    if (response.acknowledged) {
-        res.status(201).json(response);
-    } else {
-        res.status(500).json(response.error || 'Some error occurred while creating the employee.');
-    }
+    const user = new User(req.body);
+      user
+        .save()
+        .then((data) => {
+          console.log(data);
+          res.status(201).send(data);
+        })
+        .catch((err) => {
+          res.status(500).send({
+            message: err.message || 'Some error occurred while creating the user.'
+          });
+        });
+    
+    // const employee = {
+    //     firstName: req.body.firstName,
+    //     lastName: req.body.lastName,
+    //     email: req.body.email,
+    //     phoneNumber: req.body.phoneNumber,
+    //     birthday: req.body.birthday,
+    //     address: req.body.address,
+    //     interest: req.body.interest,
+    //     occupation: {
+    //         jobTitle: req.body.jobTitle,
+    //         responsibilities: req.body.responsibilities,
+    //         education: req.body.education,
+    //         expertise: req.body.expertise,
+    //         skills: req.body.skills,
+    //         salary: req.body.salary
+    //     }, 
+    //     emergencyContact: {
+    //         firstName: req.body.firstName,
+    //         lastName: req.body.lastName,
+    //         phoneNumber: req.body.phoneNumber,
+    //         email: req.body.email,
+    //         address: req.body.address
+    //     }
+    // };
+
+    // const response = await mongodb.getDb().db().collection('employee').insertOne(employee);
+    // if (response.acknowledged) {
+    //     res.status(201).json(response);
+    // } else {
+    //     res.status(500).json(response.error || 'Some error occurred while creating the employee.');
+    // }
 };
 
 const updateEmployees = async (req, res) => {
@@ -115,7 +125,7 @@ const deleteEmployees = async (req, res) => {
     .collection('employee')
     .remove({ _id: userId }, true);
     console.log(response);
-    
+
     if (response.deletedCount > 0) {
         res.status(204).send();
     } else {
