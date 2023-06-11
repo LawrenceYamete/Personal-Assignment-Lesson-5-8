@@ -23,7 +23,8 @@
     "npm": "^9.7.1",
     "package": "^1.0.1",
     "swagger": "latest",
-    "swagger-ui-express": "^4.6.3"
+    "swagger-ui-express": "^4.6.3",
+    "urix": "^0.1.0"
   },
   "devDependencies": {
     "eslint": "^8.10.0",
