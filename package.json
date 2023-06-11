@@ -19,6 +19,7 @@
     "joi": "^17.9.2",
     "joi-password-complexity": "^5.1.0",
     "mongodb": "^4.4.0",
+    "mongoose": "^7.2.3",
     "npm": "^9.7.1",
     "package": "^1.0.1",
     "swagger": "latest",
