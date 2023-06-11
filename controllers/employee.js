@@ -41,19 +41,6 @@ const createEmployees = async (req, res) => {
         res.status(400).send({ message: 'Content can not be empty!' });
         return;
       }
-
-    // const user = new User(req.body);
-    //   user
-    //     .save()
-    //     .then((data) => {
-    //       console.log(data);
-    //       res.status(201).send(data);
-    //     })
-    //     .catch((err) => {
-    //       res.status(500).send({
-    //         message: err.message || 'Some error occurred while creating the user.'
-    //       });
-    //     });
     
     const employee = {
         firstName: req.body.firstName,
@@ -92,15 +79,28 @@ const updateEmployees = async (req, res) => {
     const userId = new ObjectId(req.params.id);
     // be aware of updateOne if you only want to update specific fields
     const employee = {
-      firstName: req.body.firstName,
-      lastName: req.body.lastName,
-      email: req.body.email,
-      phoneNumber: req.body.phoneNumber,
-      birthday: req.body.birthday,
-      address: req.body.address,
-      interest: req.body.interest,
-      occupation: req.body.occupation,
-      emergencyContact: req.body.emergencyContact
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
+        email: req.body.email,
+        phoneNumber: req.body.phoneNumber,
+        birthday: req.body.birthday,
+        address: req.body.address,
+        interest: req.body.interest,
+        occupation: {
+            jobTitle: req.body.jobTitle,
+            responsibilities: req.body.responsibilities,
+            education: req.body.education,
+            expertise: req.body.expertise,
+            skills: req.body.skills,
+            salary: req.body.salary
+        }, 
+        emergencyContact: {
+            firstName: req.body.firstName,
+            lastName: req.body.lastName,
+            phoneNumber: req.body.phoneNumber,
+            email: req.body.email,
+            address: req.body.address
+        }
     };
     const response = await mongodb
         .getDb()
