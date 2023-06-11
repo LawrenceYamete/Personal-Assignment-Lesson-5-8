@@ -1,7 +1,7 @@
 {
-  "name": "REST-practice",
+  "name": "rest-practice",
   "version": "1.0.0",
-  "description": "",
+  "description": "Run npm install and npm start from the backend folder in the terminal",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -18,7 +18,7 @@
     "express": "^4.16.3",
     "joi": "^17.9.2",
     "joi-password-complexity": "^5.1.0",
-    "mongodb": "^4.4.0",
+    "mongodb": "^4.16.0",
     "mongoose": "^7.2.3",
     "npm": "^9.7.1",
     "package": "^1.0.1",
@@ -34,5 +34,6 @@
     "prettier": "2.8.8",
     "swagger-autogen": "^2.23.1",
     "yarn": "^1.22.19"
-  }
+  },
+  "keywords": []
 }
